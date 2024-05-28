@@ -9,5 +9,5 @@ ShortSwords::ShortSwords()
 {}
 
 std::string ShortSwords::getAttackString() const {
-    return " swings their short sword at ";
+    return "swings their short sword at";
 }

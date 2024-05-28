@@ -9,5 +9,5 @@ MagicAxes::MagicAxes()
 {}
 
 std::string MagicAxes::getAttackString() const {
-    return " chops ";
+    return "chops their Magic Axe at";
 }

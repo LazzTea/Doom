@@ -28,20 +28,20 @@ Objects *Dragons::drops() {
     }
 }
 
-Coord Dragons::turn(Player *p) {
+Coord Dragons::turn(const char floor[18][70], Actors* a) {
     if(randInt(1,10)==10)
         this->incHp();
 
-    if(this->getCoords().r()+1 == p->getCoords().r() && this->getCoords().c() == p->getCoords().c()){
+    if(this->getCoords().r()+1 == a->getCoords().r() && this->getCoords().c() == a->getCoords().c()){
         return Coord(this->getCoords().r()+1,this->getCoords().c());
     }
-    if(this->getCoords().r()-1 == p->getCoords().r() && this->getCoords().c() == p->getCoords().c()){
+    if(this->getCoords().r()-1 == a->getCoords().r() && this->getCoords().c() == a->getCoords().c()){
         return Coord(this->getCoords().r()-1,this->getCoords().c());
     }
-    if(this->getCoords().c()+1 == p->getCoords().c() && this->getCoords().r() == p->getCoords().r()){
+    if(this->getCoords().c()+1 == a->getCoords().c() && this->getCoords().r() == a->getCoords().r()){
         return Coord(this->getCoords().r()+1,this->getCoords().c());
     }
-    if(this->getCoords().c()-1 == p->getCoords().c() && this->getCoords().r() == p->getCoords().r()){
+    if(this->getCoords().c()-1 == a->getCoords().c() && this->getCoords().r() == a->getCoords().r()){
         return Coord(this->getCoords().r()-1,this->getCoords().c());
     }
 

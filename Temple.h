@@ -41,9 +41,15 @@ public:
 
     void buildFloor();
     void populateFloor();
-    void printFloor() const;
-
+    void printFloor();
     inline void incLevel(){ level++; }
+    inline int getLevel() const { return level; }
+
+    Objects* getObjectLocation(Coord c) const;
+    Actors* getEnemyLocation(Coord c) const;
+    void attack(Actors* attacker, Actors* defender);
+
+    bool playerTurn(char t);
 private:
     class Square{
     public:
@@ -61,6 +67,8 @@ private:
 
     std::vector<Actors*> enemies;
     std::vector<Objects*> loot;
+
+    Player* p;
 };
 
 

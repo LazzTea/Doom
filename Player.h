@@ -18,10 +18,13 @@ public:
     void pickedUp(Objects* o);
     void readScroll(int i);
     void changeWp(int i);
-    inline char symbol() { return '@'; }
-    inline std::string name() { return "Player"; }
+
+    inline char symbol() const { return '@'; }
+    inline std::string name() const { return "Player"; }
+
     void printInv() const;
-    void turn(Player* p);
+    Coord turn(const char floor[18][70], Actors* a);
+
 private:
     std::vector<Objects*> inv;
 };

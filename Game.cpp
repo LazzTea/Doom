@@ -15,11 +15,25 @@ void Game::play()
     Temple t;
     t.buildFloor();
     t.populateFloor();
-    t.printFloor();
-//    cout << "The game hasn't been implemented yet." << endl;
-//    cout << "Press q to exit game." << endl;
-//    while (getCharacter() != 'q')
-//        ;
+
+    bool running = true;
+
+    while(running){
+        t.printFloor();
+
+        std::cin >> std::ws;
+        char action = getCharacter();
+        cout << endl;
+
+        if(action == 'q'){
+            running = false;
+            break;
+        }
+
+        t.playerTurn(action);
+
+        clearScreen();
+    }
 }
 
 // You will presumably add to this project other .h/.cpp files for the various

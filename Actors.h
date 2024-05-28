@@ -26,11 +26,11 @@ public:
     virtual inline char symbol() const = 0;
     virtual inline std::string name() const = 0;
     virtual inline Objects* drops() { return nullptr; }
-    virtual Coord turn() = 0;
+    virtual Coord turn(const char floor[18][70], Actors* a) = 0;
 
     // Memeber Functions
+    inline void changeWeapon(Weapons* wpNew) { wp = wpNew; }
     inline Weapons* getWeapon() const { return wp; }
-    inline void changeWp(Weapons* wpNew) { wp = wpNew; }
     inline void move(Coord c) {
         m_c = c;
     }
@@ -43,7 +43,7 @@ public:
     inline int getDex() const { return dex; }
     inline int getMaxHp() const { return maxHp; }
 
-    inline void incHp(int = 1) {
+    inline void incHp(int v = 1) {
         if(hp + v >= maxHp){
             hp = maxHp;
         } else {
@@ -51,7 +51,7 @@ public:
         }
     }
 
-    inline void decHp(int v = -1) {
+    inline void decHp(int v = 1) {
         hp -= v;
         if(hp < 0){
             hp = 0;

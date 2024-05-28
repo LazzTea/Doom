@@ -13,7 +13,7 @@ public:
     inline ~Bogeymen() {}
 
     // Member Function
-    inline std::string name() const { return "Bogeyman"; }
+    inline std::string name() const { return "the Bogeyman"; }
     inline char symbol() const { return 'B'; }
     inline Objects* drop(){
         if(randInt(1,10)==10)

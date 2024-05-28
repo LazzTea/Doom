@@ -6,7 +6,11 @@
 #define PROJECT3_DRAGONS_H
 
 #include "Actors.h"
-#include "Temple.h"
+#include "ScrollsOfEnhancedDexterity.h"
+#include "ScrollsOfEnhancedHealth.h"
+#include "ScrollsOfRaisedStrength.h"
+#include "ScrollsOfImprovedArmor.h"
+#include "ScrollsOfTeleportation.h"
 
 class Dragons : public Actors{
 public:
@@ -15,9 +19,9 @@ public:
 
     // Member Functions
     inline char symbol() const { return 'D'; } // Override
-    inline std::string name() const { return "Dragon"; } // Override
+    inline std::string name() const { return "the Dragon"; } // Override
     Objects* drops(); // Override
-    Coord turn(Player* p);
+    Coord turn(const char floor[18][70], Actors* a);
 };
 
 

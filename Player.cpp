@@ -28,7 +28,7 @@ void Player::readScroll(int i) {
 void Player::changeWp(int i) {
     Weapons* wp = dynamic_cast<Weapons*>(inv[i]);
     if(wp != nullptr){
-        Actors::changeWp(wp);
+        Actors::changeWeapon(wp);
     }
 }
 
@@ -39,7 +39,7 @@ void Player::printInv() const {
     }
 }
 
-void Player::turn(Player *p) {
-    return;
+Coord Player::turn(const char floor[18][70], Actors* a) {
+    return Coord(-1,-1);
 }
 

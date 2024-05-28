@@ -50,7 +50,6 @@ Coord Goblins::turn(const char floor[18][70], Actors* a) {
         return Coord(this->getCoords().r()+1,this->getCoords().c());
     }
 
-
     //findPath(maze, this->getCoords().r(),this->getCoords().c(),a->getCoords().r(),a->getCoords().c(), 0, dist);
     return Coord(this->getCoords().r(),this->getCoords().c());
 }

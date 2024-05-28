@@ -9,5 +9,5 @@ Maces::Maces()
 {}
 
 std::string Maces::getAttackString() const {
-    return " crushes ";
+    return "crushes their mace at";
 }

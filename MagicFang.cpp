@@ -9,5 +9,5 @@ MagicFang::MagicFang()
 {}
 
 std::string MagicFang::getAttackString() const {
-    return " stabs Magic Fang of Sleep at ";
+    return "stabs their Magic Fang of Sleep at";
 }

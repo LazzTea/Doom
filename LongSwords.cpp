@@ -9,5 +9,5 @@ LongSwords::LongSwords()
 {}
 
 std::string LongSwords::getAttackString() const {
-    return " swings long sword at ";
+    return "sweeps their long sword at";
 }

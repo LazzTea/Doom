@@ -14,7 +14,7 @@ public:
 
     // Member Functions
     inline char symbol() const { return 'S'; } // Override
-    inline std::string name() const { return "Snakewomen"; } // Override
+    inline std::string name() const { return "the Snakewomen"; } // Override
     Objects* drops(); // Override
     Coord turn(const char floor[18][70], Actors* a);
 private:
