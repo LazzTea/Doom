@@ -28,6 +28,22 @@ Objects *Dragons::drops() {
     }
 }
 
-void Dragons::turn(Player *p) {
-    return;
+Coord Dragons::turn(Player *p) {
+    if(randInt(1,10)==10)
+        this->incHp();
+
+    if(this->getCoords().r()+1 == p->getCoords().r() && this->getCoords().c() == p->getCoords().c()){
+        return Coord(this->getCoords().r()+1,this->getCoords().c());
+    }
+    if(this->getCoords().r()-1 == p->getCoords().r() && this->getCoords().c() == p->getCoords().c()){
+        return Coord(this->getCoords().r()-1,this->getCoords().c());
+    }
+    if(this->getCoords().c()+1 == p->getCoords().c() && this->getCoords().r() == p->getCoords().r()){
+        return Coord(this->getCoords().r()+1,this->getCoords().c());
+    }
+    if(this->getCoords().c()-1 == p->getCoords().c() && this->getCoords().r() == p->getCoords().r()){
+        return Coord(this->getCoords().r()-1,this->getCoords().c());
+    }
+
+    return Coord(this->getCoords().r(),this->getCoords().c());
 }

@@ -17,7 +17,7 @@ public:
     inline char symbol() const { return 'D'; } // Override
     inline std::string name() const { return "Dragon"; } // Override
     Objects* drops(); // Override
-    void turn(Player* p);
+    Coord turn(Player* p);
 };
 
 

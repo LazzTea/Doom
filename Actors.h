@@ -26,7 +26,7 @@ public:
     virtual inline char symbol() const = 0;
     virtual inline std::string name() const = 0;
     virtual inline Objects* drops() { return nullptr; }
-    virtual Coord turn() const = 0;
+    virtual Coord turn() = 0;
 
     // Memeber Functions
     inline Weapons* getWeapon() const { return wp; }
@@ -43,7 +43,7 @@ public:
     inline int getDex() const { return dex; }
     inline int getMaxHp() const { return maxHp; }
 
-    inline void incHp(int v) {
+    inline void incHp(int = 1) {
         if(hp + v >= maxHp){
             hp = maxHp;
         } else {
@@ -51,38 +51,38 @@ public:
         }
     }
 
-    inline void decHp(int v) {
+    inline void decHp(int v = -1) {
         hp -= v;
         if(hp < 0){
             hp = 0;
         }
     }
 
-    inline void incArm(int v) {
+    inline void incArm(int v = 1) {
         if(arm + v >= 99)
             arm = 99;
         else
             arm += v;
     }
-    inline void incStr(int v) {
+    inline void incStr(int v = 1) {
         if(str + v >= 99)
             str = 99;
         else
             str += v;
     }
-    inline void incDex(int v) {
+    inline void incDex(int v = 1) {
         if(dex + v >= 99)
             dex = 99;
         else
             dex += v;
     }
-    inline void incMaxHp(int v) {
+    inline void incMaxHp(int v = 1) {
         if(maxHp + v >= 99)
             maxHp = 99;
         else
             maxHp += v;
     }
-    inline void incSleep(int v){
+    inline void incSleep(int v = 1){
         if(v > 9)
             v = 9;
         if(sleep < v)

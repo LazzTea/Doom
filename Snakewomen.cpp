@@ -15,7 +15,7 @@ Objects *Snakewomen::drops() {
     return nullptr;
 }
 
-Coord Snakewomen::turn(const char (*floor)[70], Actors *a) {
+Coord Snakewomen::turn(const char floor[18][70], Actors *a) {
     if((std::abs(this->getCoords().r() - a->getCoords().r()) + std::abs(this->getCoords().c() - a->getCoords().c())) <= 3){
         double dist = (std::sqrt(std::pow((this->getCoords().r() - a->getCoords().r()),2) + std::pow((this->getCoords().c() - a->getCoords().c()),2)));
 

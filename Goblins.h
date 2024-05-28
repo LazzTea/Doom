@@ -16,7 +16,8 @@ public:
     inline char symbol() const { return 'G'; }
     inline std::string name() const { return "Goblin"; }
     Objects* drop();
-    void turn(Player* p);
+    Coord turn(const char floor[18][70], Actors* a);
+    bool findPath(char maze[18][70], int sr, int sc, int er, int ec, int n, int& dist);
 };
 
 
