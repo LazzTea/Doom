@@ -1,0 +1,4 @@
+/snap/clion/275/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/snap/clion/275/bin/ninja/linux/x64/ninja -G Ninja -S /home/tea/Documents/cs32/projects/project3 -B /home/tea/Documents/cs32/projects/project3/cmake-build-debug
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/tea/Documents/cs32/projects/project3/cmake-build-debug
