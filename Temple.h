@@ -8,6 +8,7 @@
 #include <vector>
 #include "Coord.h"
 #include "Actors.h"
+#include "Player.h"
 #include "Bogeymen.h"
 #include "Dragons.h"
 #include "Snakewomen.h"
@@ -34,24 +35,27 @@ public:
     Temple();
 
     // Member Functions
-    Actors* randomEnemy();
+    Actors* randomEnemy(); // Functions to get random values
     Objects* randomObject();
     Coord randomPlacement() const;
 
 
-    void buildFloor();
+    void buildFloor(); // Builds and increments the levels
     void populateFloor();
     void printFloor();
     inline void incLevel(){ level++; }
     inline int getLevel() const { return level; }
 
-    Objects* getObjectLocation(Coord c) const;
+    Objects* pickUpObject(Coord c); // Gets objects based on their coord
     Actors* getEnemyLocation(Coord c) const;
-    void attack(Actors* attacker, Actors* defender);
+    void attack(Actors* attacker, Actors* defender); // Determines the out come of fights
 
-    bool playerTurn(char t);
+    inline Player* getPlayer() { return p; }
+
+    bool playerTurn(char t); // Determines what happens during players turn
+    void enemyTurn(); // Determines what happens during enemies turn
 private:
-    class Square{
+    class Square{ // Square class used to create rooms
     public:
         Square() : cr(0), cc(0), h(0), w(0), r(0), c(0) {}
         Square(int cr, int cc, int h, int w) : cr(cr), cc(cc), h(h), w(w){
@@ -62,10 +66,10 @@ private:
         int cr, cc, h, w, r, c;
     };
 
-    char floor[18][70];
+    char floor[18][70]; // The floor map
     int level = 0;
 
-    std::vector<Actors*> enemies;
+    std::vector<Actors*> enemies; // Vectors used to store monsters and objects
     std::vector<Objects*> loot;
 
     Player* p;

@@ -9,12 +9,12 @@
 
 class Player;
 
-class ScrollsOfEnhancedDexterity : public Scrolls{
+class ScrollsOfEnhancedDexterity : public Scrolls{ // Increased users dexterity
 public:
     ScrollsOfEnhancedDexterity();
 
     // Member Functions
-    void read(Player* p); // Override
+    void read(Player* p, Coord c); // Override
 };
 
 

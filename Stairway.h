@@ -7,7 +7,7 @@
 
 #include "Objects.h"
 
-class Stairway : public Objects{
+class Stairway : public Objects{ // Simple object complexity is found in game and temple classes
 public:
     Stairway();
 

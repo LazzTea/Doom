@@ -17,16 +17,16 @@
 
 class Player;
 
-class Actors {
+class Actors { // Base class for all monsters and player
 public:
     Actors(Coord c, int hpSt, int armSt, int strSt, int dexSt, int maxHpSt, Weapons* wpSt);
     virtual inline ~Actors(){ delete wp; }
 
     // Functions for Child Classes
-    virtual inline char symbol() const = 0;
+    virtual inline char symbol() const = 0; // The symbol each enemy and play displays on map
     virtual inline std::string name() const = 0;
-    virtual inline Objects* drops() { return nullptr; }
-    virtual Coord turn(const char floor[18][70], Actors* a) = 0;
+    virtual inline Objects* drops() { return nullptr; } // This is what enemies drop when they die it will be implemeted by enemy type
+    virtual Coord turn(const char floor[18][70], Actors* a) = 0; // What each entity will do during their turn
 
     // Memeber Functions
     inline void changeWeapon(Weapons* wpNew) { wp = wpNew; }
@@ -42,6 +42,7 @@ public:
     inline int getStr() const { return str; }
     inline int getDex() const { return dex; }
     inline int getMaxHp() const { return maxHp; }
+    inline int getSleep() const { return sleep; }
 
     inline void incHp(int v = 1) {
         if(hp + v >= maxHp){
@@ -82,7 +83,7 @@ public:
         else
             maxHp += v;
     }
-    inline void incSleep(int v = 1){
+    inline void setSleep(int v){
         if(v > 9)
             v = 9;
         if(sleep < v)
@@ -90,6 +91,8 @@ public:
     }
     inline void decSleep(){
         sleep--;
+        if(sleep <0)
+            sleep = 0;
     }
 private:
     Coord m_c;

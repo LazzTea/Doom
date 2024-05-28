@@ -10,6 +10,7 @@
 class MagicAxes : public Weapons{
 public:
     MagicAxes();
+    inline ~MagicAxes() {}
 
     // Member Function
     virtual std::string getAttackString() const;

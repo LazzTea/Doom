@@ -41,8 +41,6 @@ add_executable(project3
         Temple.h
         Coord.cpp
         Coord.h
-        stairway.cpp
-        stairway.h
         Stairway.cpp
         Stairway.h
         Idol.cpp

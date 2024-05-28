@@ -196,13 +196,6 @@ build CMakeFiles/project3.dir/Coord.cpp.o: CXX_COMPILER__project3_unscanned_Debu
   OBJECT_DIR = CMakeFiles/project3.dir
   OBJECT_FILE_DIR = CMakeFiles/project3.dir
 
-build CMakeFiles/project3.dir/stairway.cpp.o: CXX_COMPILER__project3_unscanned_Debug /home/tea/Documents/cs32/projects/project3/stairway.cpp || cmake_object_order_depends_target_project3
-  DEP_FILE = CMakeFiles/project3.dir/stairway.cpp.o.d
-  FLAGS = -g -std=gnu++14 -fdiagnostics-color=always
-  INCLUDES = -I/home/tea/Documents/cs32/projects/project3/.
-  OBJECT_DIR = CMakeFiles/project3.dir
-  OBJECT_FILE_DIR = CMakeFiles/project3.dir
-
 build CMakeFiles/project3.dir/Stairway.cpp.o: CXX_COMPILER__project3_unscanned_Debug /home/tea/Documents/cs32/projects/project3/Stairway.cpp || cmake_object_order_depends_target_project3
   DEP_FILE = CMakeFiles/project3.dir/Stairway.cpp.o.d
   FLAGS = -g -std=gnu++14 -fdiagnostics-color=always
@@ -246,7 +239,7 @@ build CMakeFiles/project3.dir/Goblins.cpp.o: CXX_COMPILER__project3_unscanned_De
 #############################################
 # Link the executable project3
 
-build project3: CXX_EXECUTABLE_LINKER__project3_Debug CMakeFiles/project3.dir/Actors.cpp.o CMakeFiles/project3.dir/Player.cpp.o CMakeFiles/project3.dir/Bogeymen.cpp.o CMakeFiles/project3.dir/MagicFang.cpp.o CMakeFiles/project3.dir/MagicAxes.cpp.o CMakeFiles/project3.dir/LongSwords.cpp.o CMakeFiles/project3.dir/ShortSwords.cpp.o CMakeFiles/project3.dir/Objects.cpp.o CMakeFiles/project3.dir/Weapons.cpp.o CMakeFiles/project3.dir/Maces.cpp.o CMakeFiles/project3.dir/utilities.cpp.o CMakeFiles/project3.dir/main.cpp.o CMakeFiles/project3.dir/Game.cpp.o CMakeFiles/project3.dir/Scrolls.cpp.o CMakeFiles/project3.dir/ScrollsOfTeleportation.cpp.o CMakeFiles/project3.dir/ScrollsOfImprovedArmor.cpp.o CMakeFiles/project3.dir/ScrollsOfRaisedStrength.cpp.o CMakeFiles/project3.dir/ScrollsOfEnhancedHealth.cpp.o CMakeFiles/project3.dir/ScrollsOfEnhancedDexterity.cpp.o CMakeFiles/project3.dir/Temple.cpp.o CMakeFiles/project3.dir/Coord.cpp.o CMakeFiles/project3.dir/stairway.cpp.o CMakeFiles/project3.dir/Stairway.cpp.o CMakeFiles/project3.dir/Idol.cpp.o CMakeFiles/project3.dir/Dragons.cpp.o CMakeFiles/project3.dir/Snakewomen.cpp.o CMakeFiles/project3.dir/Goblins.cpp.o
+build project3: CXX_EXECUTABLE_LINKER__project3_Debug CMakeFiles/project3.dir/Actors.cpp.o CMakeFiles/project3.dir/Player.cpp.o CMakeFiles/project3.dir/Bogeymen.cpp.o CMakeFiles/project3.dir/MagicFang.cpp.o CMakeFiles/project3.dir/MagicAxes.cpp.o CMakeFiles/project3.dir/LongSwords.cpp.o CMakeFiles/project3.dir/ShortSwords.cpp.o CMakeFiles/project3.dir/Objects.cpp.o CMakeFiles/project3.dir/Weapons.cpp.o CMakeFiles/project3.dir/Maces.cpp.o CMakeFiles/project3.dir/utilities.cpp.o CMakeFiles/project3.dir/main.cpp.o CMakeFiles/project3.dir/Game.cpp.o CMakeFiles/project3.dir/Scrolls.cpp.o CMakeFiles/project3.dir/ScrollsOfTeleportation.cpp.o CMakeFiles/project3.dir/ScrollsOfImprovedArmor.cpp.o CMakeFiles/project3.dir/ScrollsOfRaisedStrength.cpp.o CMakeFiles/project3.dir/ScrollsOfEnhancedHealth.cpp.o CMakeFiles/project3.dir/ScrollsOfEnhancedDexterity.cpp.o CMakeFiles/project3.dir/Temple.cpp.o CMakeFiles/project3.dir/Coord.cpp.o CMakeFiles/project3.dir/Stairway.cpp.o CMakeFiles/project3.dir/Idol.cpp.o CMakeFiles/project3.dir/Dragons.cpp.o CMakeFiles/project3.dir/Snakewomen.cpp.o CMakeFiles/project3.dir/Goblins.cpp.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/project3.dir
   POST_BUILD = :

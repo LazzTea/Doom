@@ -10,6 +10,7 @@
 class LongSwords : public Weapons{
 public:
     LongSwords();
+    inline ~LongSwords() {}
 
     // Member Functions
     virtual std::string getAttackString() const;

@@ -6,7 +6,7 @@
 #define PROJECT3_COORD_H
 
 
-class Coord
+class Coord // Class used to store coordinates
 {
 public:
     inline Coord() : m_row(-1), m_col(-1), path(0) {}

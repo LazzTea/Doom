@@ -8,6 +8,6 @@
 ScrollsOfEnhancedDexterity::ScrollsOfEnhancedDexterity() : Scrolls("Scrolls of Enhanced Dexterity")
 {}
 
-void ScrollsOfEnhancedDexterity::read(Player *p) {
+void ScrollsOfEnhancedDexterity::read(Player *p, Coord c) {
     p->incDex(1);
 }

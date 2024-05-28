@@ -7,12 +7,12 @@
 
 #include "Scrolls.h"
 
-class ScrollsOfRaisedStrength : public Scrolls{
+class ScrollsOfRaisedStrength : public Scrolls{ // Increases users strength
 public:
     ScrollsOfRaisedStrength();
 
     // Member Functions
-    void read(Player* p); // Override
+    void read(Player* p, Coord c); // Override
 private:
 };
 

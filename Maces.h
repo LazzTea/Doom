@@ -10,6 +10,7 @@
 class Maces : public Weapons{
 public:
     Maces();
+    inline ~Maces() {}
 
     // Member Functions
     virtual std::string getAttackString() const;

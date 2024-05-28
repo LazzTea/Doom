@@ -8,6 +8,6 @@
 ScrollsOfRaisedStrength::ScrollsOfRaisedStrength() : Scrolls("Scrolls of Raised Strength")
 {}
 
-void ScrollsOfRaisedStrength::read(Player *p) {
+void ScrollsOfRaisedStrength::read(Player *p, Coord c) {
     p->incStr(randInt(1,3));
 }

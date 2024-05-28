@@ -15,7 +15,7 @@ public:
     Scrolls(std::string name);
 
     // Member Functions
-    virtual void read(Player* p);
+    virtual void read(Player* p, Coord c) = 0;
     inline char symbol() const { return '?'; }
 private:
 };

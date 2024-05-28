@@ -8,6 +8,6 @@
 ScrollsOfEnhancedHealth::ScrollsOfEnhancedHealth() : Scrolls("Scrolls of Enhanced Health")
 {}
 
-void ScrollsOfEnhancedHealth::read(Player *p) {
+void ScrollsOfEnhancedHealth::read(Player *p, Coord c) {
     p->incMaxHp(randInt(3,8));
 }

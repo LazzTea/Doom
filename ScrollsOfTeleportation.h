@@ -8,7 +8,7 @@
 #include "Scrolls.h"
 #include "Coord.h"
 
-class ScrollsOfTeleportation : public Scrolls{
+class ScrollsOfTeleportation : public Scrolls{ // teleports user to a random location based on the coords given by the temple class later
 public:
     ScrollsOfTeleportation();
 

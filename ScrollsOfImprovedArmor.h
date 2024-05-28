@@ -7,12 +7,12 @@
 
 #include "Scrolls.h"
 
-class ScrollsOfImprovedArmor : public Scrolls{
+class ScrollsOfImprovedArmor : public Scrolls{ // Increases users armor
 public:
     ScrollsOfImprovedArmor();
 
     // Member Functions
-    void read(Player* p); // Override
+    void read(Player* p, Coord c); // Override
 };
 
 

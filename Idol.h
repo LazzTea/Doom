@@ -8,7 +8,7 @@
 
 #include "Objects.h"
 
-class Idol : public Objects{
+class Idol : public Objects{ // Simple object creation with name and symbol
 public:
     Idol();
 

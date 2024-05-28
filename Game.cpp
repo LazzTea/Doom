@@ -12,27 +12,47 @@ Game::Game(int goblinSmellDistance)
 
 void Game::play()
 {
-    Temple t;
+    Temple t; // Creates and populates the floor
     t.buildFloor();
     t.populateFloor();
+    clearScreen();
+    t.printFloor();
 
     bool running = true;
 
     while(running){
-        t.printFloor();
 
-        std::cin >> std::ws;
+
+        std::cin >> std::ws; // Gets the action the player will perform
         char action = getCharacter();
         cout << endl;
+        clearScreen();
 
-        if(action == 'q'){
+        if(action == 'q'){ // Quits game when selected
             running = false;
             break;
         }
 
-        t.playerTurn(action);
+        if(t.playerTurn(action)){ // Determines if a player action continues levels or wins game
+            if(t.getLevel()==4){
+                cout << "VICTORY" << endl;
+                running = false;
+                break;
+            } else {
+                t.incLevel();
+                t.buildFloor();
+                t.populateFloor();
+            }
+        }
 
-        clearScreen();
+        t.enemyTurn();
+
+        if(t.getPlayer()->getHp()<=0){ // Checks if the player is alive
+            cout << "You Died" << endl;
+            running = false;
+            break;
+        }
+        t.printFloor();
     }
 }
 

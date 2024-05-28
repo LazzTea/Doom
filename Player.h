@@ -16,7 +16,7 @@ public:
     inline ~Player() {}
 
     void pickedUp(Objects* o);
-    void readScroll(int i);
+    void readScroll(int i, Coord c);
     void changeWp(int i);
 
     inline char symbol() const { return '@'; }

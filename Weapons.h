@@ -7,15 +7,16 @@
 
 #include "Objects.h"
 
-class Weapons : public Objects{
+class Weapons : public Objects{ // Describes how each weapon works
 public:
     Weapons(std::string name, int dexBonus, int dmgBonus);
+    virtual inline ~Weapons() {};
 
     // Member Functions
-    virtual std::string getAttackString() const = 0;
-    virtual inline char symbol() const { return ')'; };
+    virtual std::string getAttackString() const = 0; // String displayed when a weapon is used to attack
+    virtual inline char symbol() const { return ')'; }; // Weapon symbol
 
-    inline int getDexBonus() const { return dexBonus; }
+    inline int getDexBonus() const { return dexBonus; } // Bonuses of each weapon
     inline int getDmgBonus() const { return dmgBonus; }
 
     inline void addDexBonus(int dexPoints) { dexBonus += dexPoints; }

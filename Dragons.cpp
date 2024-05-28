@@ -10,7 +10,7 @@ Dragons::Dragons(Coord c)
     incHp(5);
 }
 
-Objects *Dragons::drops() {
+Objects *Dragons::drops() { // Determines which scroll the dragon will drop
     int i = randInt(1,5);
     switch (i) {
         case 1:
@@ -28,7 +28,7 @@ Objects *Dragons::drops() {
     }
 }
 
-Coord Dragons::turn(const char floor[18][70], Actors* a) {
+Coord Dragons::turn(const char floor[18][70], Actors* a) { // Determines if the dragon is next to a player in which case it will attack
     if(randInt(1,10)==10)
         this->incHp();
 
@@ -39,10 +39,10 @@ Coord Dragons::turn(const char floor[18][70], Actors* a) {
         return Coord(this->getCoords().r()-1,this->getCoords().c());
     }
     if(this->getCoords().c()+1 == a->getCoords().c() && this->getCoords().r() == a->getCoords().r()){
-        return Coord(this->getCoords().r()+1,this->getCoords().c());
+        return Coord(this->getCoords().r(),this->getCoords().c()+1);
     }
     if(this->getCoords().c()-1 == a->getCoords().c() && this->getCoords().r() == a->getCoords().r()){
-        return Coord(this->getCoords().r()-1,this->getCoords().c());
+        return Coord(this->getCoords().r(),this->getCoords().c()-1);
     }
 
     return Coord(this->getCoords().r(),this->getCoords().c());

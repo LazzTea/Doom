@@ -7,12 +7,12 @@
 
 #include "Scrolls.h"
 
-class ScrollsOfEnhancedHealth : public Scrolls{
+class ScrollsOfEnhancedHealth : public Scrolls{ // Increases users max health
 public:
     ScrollsOfEnhancedHealth();
 
     // Member Functions
-    void read(Player* p); // Override
+    void read(Player* p, Coord c); // Override
 };
 
 

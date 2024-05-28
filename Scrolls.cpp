@@ -7,7 +7,3 @@
 Scrolls::Scrolls(std::string name)
 : Objects(name)
 {}
-
-void Scrolls::read(Player* p) {
-    return;
-}

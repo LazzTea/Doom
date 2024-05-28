@@ -10,6 +10,7 @@
 class MagicFang : public Weapons{
 public:
     MagicFang();
+    inline ~MagicFang() {}
 
     //Member Functions
     virtual std::string getAttackString() const;

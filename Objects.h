@@ -10,7 +10,7 @@
 
 class Objects {
 public:
-    Objects(std::string name);
+    Objects(std::string name); // Displays the simple functions for all the objects
 
     // Member Function
     void place(Coord c);
