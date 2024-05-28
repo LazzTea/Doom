@@ -9,6 +9,6 @@ Bogeymen::Bogeymen(Coord c)
 {}
 
 Coord Bogeymen::turn(char floor[18][70]) {
-    if()
+    if(ss)
 }
 
