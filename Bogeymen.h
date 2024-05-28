@@ -20,7 +20,7 @@ public:
             return new MagicAxes;
         return nullptr;
     }
-    Coord turn(char floor[18][70]);
+    Coord turn(const char floor[18][70], Actors* a);
 private:
 };
 

@@ -26,7 +26,7 @@ public:
     virtual inline char symbol() const = 0;
     virtual inline std::string name() const = 0;
     virtual inline Objects* drops() { return nullptr; }
-    virtual Coord turn(char floor[18][70]) = 0;
+    virtual Coord turn() const = 0;
 
     // Memeber Functions
     inline Weapons* getWeapon() const { return wp; }
