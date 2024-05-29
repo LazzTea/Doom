@@ -10,6 +10,7 @@
 class ScrollsOfImprovedArmor : public Scrolls{ // Increases users armor
 public:
     ScrollsOfImprovedArmor();
+    inline ~ScrollsOfImprovedArmor() {}
 
     // Member Functions
     void read(Player* p, Coord c); // Override

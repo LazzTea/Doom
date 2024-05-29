@@ -13,6 +13,7 @@
 class Scrolls : public Objects{
 public:
     Scrolls(std::string name);
+    virtual inline ~Scrolls() {}
 
     // Member Functions
     virtual void read(Player* p, Coord c) = 0;

@@ -6,10 +6,11 @@
 #define PROJECT3_GOBLINS_H
 
 #include "Actors.h"
+#include <vector>
 
 class Goblins : public Actors{
 public:
-    Goblins(Coord c);
+    Goblins(Coord c,int smell);
     inline ~Goblins() {}
 
     // Member Functions
@@ -17,7 +18,10 @@ public:
     inline std::string name() const { return "the Goblin"; }
     Objects* drop();
     Coord turn(const char floor[18][70], Actors* a);
-    bool findPath(char maze[18][70], int sr, int sc, int er, int ec, int n);
+    void findPath(char (*maze)[70], std::vector<Coord>& shortestPath, std::vector<Coord>& curPath, Coord start, Coord end, int optimalDistance);
+    bool isValid(char c) const;
+private:
+    int smell;
 };
 
 

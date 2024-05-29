@@ -10,6 +10,7 @@
 class ScrollsOfRaisedStrength : public Scrolls{ // Increases users strength
 public:
     ScrollsOfRaisedStrength();
+    inline ~ScrollsOfRaisedStrength() {}
 
     // Member Functions
     void read(Player* p, Coord c); // Override

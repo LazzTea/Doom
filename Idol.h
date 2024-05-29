@@ -11,6 +11,7 @@
 class Idol : public Objects{ // Simple object creation with name and symbol
 public:
     Idol();
+    inline ~Idol() {}
 
     // Member Functions
     char symbol() const { return '&'; } // Override

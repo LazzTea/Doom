@@ -11,6 +11,7 @@
 class ScrollsOfTeleportation : public Scrolls{ // teleports user to a random location based on the coords given by the temple class later
 public:
     ScrollsOfTeleportation();
+    inline ~ScrollsOfTeleportation() {}
 
     // Member Function
     void read(Player *p, Coord c); // Override

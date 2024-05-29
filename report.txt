@@ -1,22 +1,45 @@
 Goblin Recursive Function named findPath and is found under the turn method for the Goblin class so its declared in Goblin.h and implemented in Goblin.cpp.
 
-The way the function works is that it creates grid of 15 distance around four points around the Goblin.  One for each direction.
-The grids are created recursively according to this sudo code
-    if n is greater than 15
-        return false
-    maze[sr][sc] = current n value
+The Goblin works by recursively hypothetically moving in all directions until it either is too long a path or has found the player,
+if it found the player that path is stored as the shortest.  However, if another path from another direction also reaches the player
+but is shorter in length than the previous path is discarded in favor of the new path.
 
-    if square is valid or if square has n value greater than previous square
-        call function again
-        pathExists(maze, sr,sc+1,er,ec,n+1, dist)
-    Repeat above for each of the four directions changing sr and sc accordingly
+Recursive Function returns void
 
-    dist = ending locations n value
+    if the curPath is too large it will just exit
+
+    if shortest path is less than or equal to the optimal distance and shortest path is not 0 than it can return
+    because there is no way it can get any smaller.
+
+    // Base cases
+    if current location is invalid than exit
+
+    if cur cell is at the player
+        push value back in current path
+        if this path is less than the shortest path and shortest path is not empty and current cell is at player than
+            set shortest path to current path
+
+        pop the back of current path to continue searching
+        return
+
+
+    Mark Cell as Visited
+
+    Go in each direction if that direction has a valid char prefers directions that is more striaght forward
+    towards the player to reduce runtime
+        isValid for maze in that direction
+            call recursive function with new direction
+
+
+    Remove Cell when Dead End
+
+    End of Recursive Function
 
 The rooms generation is pretty simple, first there is a square class that has a center, width, and height.  Than a random number of squares are created
 with random values for their center, width, and height.  Than function fills the grid with # except when the point is within any of the squares.
 Lastly to connect the squares the center is used so the center that is smaller will get a line from their row to the larger ones row
 and another line from the new point from the smaller ones col to the larger ones col.  This creates a hallway between centers.
 
-Errors
-While the Goblin generally moves accurately, it sometimes bugs out a wont follow the player despite being the correct distance away.
+Currently the Goblin function is a bit slow but not unbearable, also the input values show above the screen
+rather than below the screen.  The screen also its a bit weird if you spam the inputs fast enough but thats probably just an issue with
+it being run on the terminal the clear screen and getcharacter functions.  Otherwise it is pretty good.

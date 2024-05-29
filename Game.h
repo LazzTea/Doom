@@ -22,6 +22,7 @@ public:
     Game(int goblinSmellDistance);
     void play();
 private:
+    int smell;
 };
 
 #endif // GAME_INCLUDED

@@ -10,7 +10,7 @@
 class ShortSwords : public Weapons{
 public:
     ShortSwords();
-    inline ~ShortSwords() {}
+    ~ShortSwords();
 
     // Member Functions
     virtual std::string getAttackString() const;

@@ -10,8 +10,20 @@ Player::Player(Coord c) : Actors(c, 20, 2, 2, 2, 20, new ShortSwords)
     inv.push_back(Actors::getWeapon());
 }
 
+Player::~Player(){
+    for(auto& item : inv) {
+        if(item){
+            if(getWeapon() == item)
+                continue;
+            delete item;
+            item = nullptr;
+        }
+    }
+    inv.clear();
+}
+
 void Player::pickedUp(Objects* o) { // handles picking up object
-    if(inv.size()>=20)
+    if(inv.size()>25)
         return;
     o->pickUp();
     inv.push_back(o);
@@ -24,6 +36,7 @@ void Player::readScroll(int i, Coord c) { // Reads scrolls
     if(sc != nullptr){
         cout << "Player reads scroll " << sc->getName() << endl;
         sc->read(this, c);
+        delete inv[i];
         inv.erase(inv.begin()+i);
     }
 }

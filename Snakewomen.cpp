@@ -17,7 +17,6 @@ Objects *Snakewomen::drops() {
 
 Coord Snakewomen::turn(const char floor[18][70], Actors *a) { // Same as the Bogeymans which is explained in the bogeyman class but it has 3 distance rather than 5
     if((std::abs(this->getCoords().r() - a->getCoords().r()) + std::abs(this->getCoords().c() - a->getCoords().c())) <= 3){
-        double dist = (std::sqrt(std::pow((this->getCoords().r() - a->getCoords().r()),2) + std::pow((this->getCoords().c() - a->getCoords().c()),2)));
 
         if(this->getCoords().r() > a->getCoords().r()){
             char t = floor[this->getCoords().r()-1][this->getCoords().c()];

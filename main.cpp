@@ -15,7 +15,7 @@ int main() // Final Main Function
       // improve your algorithm, pass a value smaller than 15 to the game
       // constructor so your game is comfortable to play.
 
-	Game g(15);
+	Game g(8);
 	g.play();
 }
 

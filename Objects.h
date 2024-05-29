@@ -11,6 +11,7 @@
 class Objects {
 public:
     Objects(std::string name); // Displays the simple functions for all the objects
+    virtual inline ~Objects() {}
 
     // Member Function
     void place(Coord c);

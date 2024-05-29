@@ -7,20 +7,19 @@ using namespace std;
 
 // Implement these and other Game member functions you may have added.
 
-Game::Game(int goblinSmellDistance)
+Game::Game(int goblinSmellDistance) : smell(goblinSmellDistance)
 {}
 
 void Game::play()
 {
-    Temple t; // Creates and populates the floor
+    Temple t(smell); // Creates and populates the floor
     t.buildFloor();
     t.populateFloor();
     clearScreen();
+    cout << endl;
     t.printFloor();
 
-    bool running = true;
-
-    while(running){
+    while(true){
 
 
         std::cin >> std::ws; // Gets the action the player will perform
@@ -29,27 +28,28 @@ void Game::play()
         clearScreen();
 
         if(action == 'q'){ // Quits game when selected
-            running = false;
             break;
         }
 
         if(t.playerTurn(action)){ // Determines if a player action continues levels or wins game
             if(t.getLevel()==4){
-                cout << "VICTORY" << endl;
-                running = false;
+                cout << "VICTORY!!! The Idol is now yours!" << endl;
                 break;
             } else {
                 t.incLevel();
                 t.buildFloor();
                 t.populateFloor();
+                clearScreen();
+                cout << "Player climbed to level " << t.getLevel() << endl;
+                t.printFloor();
+                continue;
             }
         }
 
         t.enemyTurn();
 
         if(t.getPlayer()->getHp()<=0){ // Checks if the player is alive
-            cout << "You Died" << endl;
-            running = false;
+            cout << "YOU DIED!" << endl;
             break;
         }
         t.printFloor();

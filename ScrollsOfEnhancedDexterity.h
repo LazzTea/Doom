@@ -12,6 +12,7 @@ class Player;
 class ScrollsOfEnhancedDexterity : public Scrolls{ // Increased users dexterity
 public:
     ScrollsOfEnhancedDexterity();
+    inline ~ScrollsOfEnhancedDexterity() {}
 
     // Member Functions
     void read(Player* p, Coord c); // Override

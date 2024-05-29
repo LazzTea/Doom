@@ -10,6 +10,7 @@
 class Stairway : public Objects{ // Simple object complexity is found in game and temple classes
 public:
     Stairway();
+    inline ~Stairway() {}
 
     // Member Functions
     char symbol() const { return '>'; } // Override

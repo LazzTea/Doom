@@ -8,6 +8,8 @@ ShortSwords::ShortSwords()
 : Weapons("short sword", 0, 2)
 {}
 
+ShortSwords::~ShortSwords()= default;
+
 std::string ShortSwords::getAttackString() const {
     return "swings their short sword at";
 }

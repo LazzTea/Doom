@@ -13,7 +13,7 @@
 class Player : public Actors{
 public:
     Player(Coord c);
-    inline ~Player() {}
+    ~Player();
 
     void pickedUp(Objects* o);
     void readScroll(int i, Coord c);

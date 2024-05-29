@@ -5,10 +5,25 @@
 #include "Temple.h"
 using namespace std;
 
-Temple::Temple() // Creates the temple class
+Temple::Temple(int smell) : p(nullptr), smell(smell) // Creates the temple class
 {
     Coord c(-1,-1);
     p = new Player(c);
+}
+
+Temple::~Temple(){
+    if(p){
+        delete p;
+    }
+    for(auto& enemy : enemies) {
+        delete enemy;
+    }
+    enemies.clear();
+
+    for(auto& item : loot) {
+        delete item;
+    }
+    loot.clear();
 }
 
 Actors* Temple::randomEnemy() { // gets random enemy depending on level
@@ -35,7 +50,7 @@ Actors* Temple::randomEnemy() { // gets random enemy depending on level
         case 0:
             return new Snakewomen(c);
         case 1:
-            return new Goblins(c);
+            return new Goblins(c, smell);
         case 2:
             return new Bogeymen(c);
         case 3:
@@ -88,16 +103,16 @@ void Temple::buildFloor() {
         }
     }
 
-    int numRooms = randInt(3,6);
-    Square s[numRooms];
+    int numRooms = randInt(2,5);
+    vector<Square*> s;
     for(int i = 0;i < numRooms; i++){
-        s[i] = Square(randInt(2,16),randInt(2,68), randInt(2,3), randInt(6,12));
+        s.push_back(new Square(randInt(2,16),randInt(2,68), randInt(2,3), randInt(4,8)));
     }
 
     for(int i = 1; i <17; i++){ // Removes # if in a square
         for(int j=1;j<69;j++){
             for(int sq=0;sq<numRooms;sq++){
-                if(i>=s[sq].r && i<=s[sq].r+s[sq].h && j>=s[sq].c && j<=s[sq].c+s[sq].w){
+                if(i>=s[sq]->r && i<=s[sq]->r+s[sq]->h && j>=s[sq]->c && j<=s[sq]->c+s[sq]->w){
                     floor[i][j]=' ';
                 }
             }
@@ -105,45 +120,45 @@ void Temple::buildFloor() {
     }
 
     for(int sq = 0;sq<numRooms-1;sq++){ // Adds Paths between rooms
-        if(s[sq].cc < s[sq+1].cc){
-            for(int i = s[sq].cc; i <= s[sq+1].cc;i++){
-                floor[s[sq].cr][i] = ' ';
+        if(s[sq]->cc < s[sq+1]->cc){
+            for(int i = s[sq]->cc; i <= s[sq+1]->cc;i++){
+                floor[s[sq]->cr][i] = ' ';
             }
         } else {
-            for(int i = s[sq+1].cc; i <= s[sq].cc;i++){
-                floor[s[sq].cr][i] = ' ';
+            for(int i = s[sq+1]->cc; i <= s[sq]->cc;i++){
+                floor[s[sq]->cr][i] = ' ';
             }
         }
 
-        if(s[sq].cr < s[sq+1].cr){
-            for(int i = s[sq].cr; i <= s[sq+1].cr;i++){
-                floor[i][s[sq].cc] = ' ';
+        if(s[sq]->cr < s[sq+1]->cr){
+            for(int i = s[sq]->cr; i <= s[sq+1]->cr;i++){
+                floor[i][s[sq]->cc] = ' ';
             }
         } else {
-            for(int i = s[sq+1].cc; i <= s[sq].cr;i++){
-                floor[i][s[sq].cc] = ' ';
+            for(int i = s[sq+1]->cc; i <= s[sq]->cr;i++){
+                floor[i][s[sq]->cc] = ' ';
             }
         }
     }
 
     for(int sq =numRooms-1;sq>0;sq--){ // Adds Paths between rooms
-        if(s[sq].cr < s[sq-1].cr){
-            for(int i = s[sq].cr; i <= s[sq-1].cr;i++){
-                floor[i][s[sq].cc] = ' ';
+        if(s[sq]->cr < s[sq-1]->cr){
+            for(int i = s[sq]->cr; i <= s[sq-1]->cr;i++){
+                floor[i][s[sq]->cc] = ' ';
             }
         } else {
-            for(int i = s[sq-1].cr; i <= s[sq].cr;i++){
-                floor[i][s[sq].cc] = ' ';
+            for(int i = s[sq-1]->cr; i <= s[sq]->cr;i++){
+                floor[i][s[sq]->cc] = ' ';
             }
         }
 
-        if(s[sq].cc < s[sq-1].cc){
-            for(int i = s[sq].cc; i <= s[sq-1].cc;i++){
-                floor[s[sq].cr][i] = ' ';
+        if(s[sq]->cc < s[sq-1]->cc){
+            for(int i = s[sq]->cc; i <= s[sq-1]->cc;i++){
+                floor[s[sq]->cr][i] = ' ';
             }
         } else {
-            for(int i = s[sq-1].cc; i <= s[sq].cc;i++){
-                floor[s[sq].cr][i] = ' ';
+            for(int i = s[sq-1]->cc; i <= s[sq]->cc;i++){
+                floor[s[sq]->cr][i] = ' ';
             }
         }
     }
@@ -160,12 +175,23 @@ void Temple::buildFloor() {
     for(int i = 0;i<70;i++){
         floor[17][i] = '#';
     }
+
+    for(int i =0;i <s.size();i++){
+        delete s[i];
+    }
 }
 
 // M = randInt(2, 5*(L+1)+1)
 void Temple::populateFloor() {
     p->move(randomPlacement());
     floor[p->getCoords().r()][p->getCoords().c()] = p->symbol();
+
+    for(int i =0;i<loot.size();i++){
+        delete loot[i];
+    }
+    for(int i =0; i< enemies.size();i++){
+        delete enemies[i];
+    }
 
     loot.clear();
     enemies.clear();
@@ -239,6 +265,15 @@ Actors *Temple::getEnemyLocation(Coord c) const{ // gets enemy based on coords
     return nullptr;
 }
 
+Objects *Temple::getObjectLocation(Coord c) const{ // gets enemy based on coords
+    for(int i = 0;i < loot.size();i++){
+        if(loot[i]->getCoords().r() == c.r() && loot[i]->getCoords().c() == c.c()){
+            return loot[i];
+        }
+    }
+    return nullptr;
+}
+
 //attackerPoints = attackerDexterity + weaponDexterityBonus;
 //defenderPoints = defenderDexterity + defenderArmorPoints;
 //if (randInt(1, attackerPoints) >= randInt(1, defenderPoints))
@@ -267,6 +302,7 @@ bool Temple::playerTurn(char t) { // Covers players variety of moves
     }
 
     if(p->getSleep() > 0) { // if player is asleep skips their turn
+        cout << "Player is Asleep" << endl;
         p->decSleep();
         return false;
     }
@@ -277,9 +313,11 @@ bool Temple::playerTurn(char t) { // Covers players variety of moves
             return false;
         }
         if(item->getName()=="Idol"){
+            delete item;
             return true;
         }
         if(item->getName()!="Stairway") {
+            cout << "Player picked up " << item->getName() << endl;
             p->pickedUp(item);
         }
     }
@@ -297,7 +335,6 @@ bool Temple::playerTurn(char t) { // Covers players variety of moves
         cout << endl;
         i-=97;
         int j = int(i);
-        cout << j << endl;
         p->changeWp(j);
     }
 
@@ -307,24 +344,25 @@ bool Temple::playerTurn(char t) { // Covers players variety of moves
         cout << endl;
         i-=97;
         int j = int(i);
-        cout << j << endl;
         p->readScroll(j, randomPlacement());
     }
 
     if(t == '>'){ // Allows player to move to the next floor
         Objects* item = Temple::pickUpObject(p->getCoords());
         if(item->getName()=="Stairway") {
+            delete item;
             return true;
         }
     }
 
     // Allows player to move in certain  directions
     if(t == 'h'){ // move/attack left
-        Coord c(p->getCoords().r(),p->getCoords().c()-1);
-        Actors* enem = Temple::getEnemyLocation(c);
-        if(enem != nullptr){
+        Coord c(p->getCoords().r(),p->getCoords().c()-1); // next coords
+        Actors* enem = Temple::getEnemyLocation(c); // gets whats at coords
+        if(enem != nullptr){ // if its an enemy fight
             attack(p,enem);
-        }else {
+        }else { // if not see if you can move to that space
+            cout << endl;
             char m = floor[p->getCoords().r()][p->getCoords().c()-1];
 
             if(m == ' ' || m == ')' || m == '&' || m == '>' || m == '?'){
@@ -333,13 +371,14 @@ bool Temple::playerTurn(char t) { // Covers players variety of moves
                 floor[p->getCoords().r()][p->getCoords().c()] = p->symbol();
             }
         }
-    }
+    } // Repeat for other directions
     else if(t == 'l'){ // move/attack right
         Coord c(p->getCoords().r(),p->getCoords().c()+1);
         Actors* enem = Temple::getEnemyLocation(c);
         if(enem != nullptr){
             attack(p,enem);
         } else {
+            cout << endl;
             char m = floor[p->getCoords().r()][p->getCoords().c()+1];
             if(m == ' ' || m == ')' || m == '&' || m == '>' || m == '?'){
                 floor[p->getCoords().r()][p->getCoords().c()] = ' ';
@@ -354,6 +393,7 @@ bool Temple::playerTurn(char t) { // Covers players variety of moves
         if(enem != nullptr){
             attack(p,enem);
         } else {
+            cout << endl;
             char m = floor[p->getCoords().r()-1][p->getCoords().c()];
             if(m == ' ' || m == ')' || m == '&' || m == '>' || m == '?'){
                 floor[p->getCoords().r()][p->getCoords().c()] = ' ';
@@ -368,6 +408,7 @@ bool Temple::playerTurn(char t) { // Covers players variety of moves
         if(enem != nullptr){
             attack(p,enem);
         } else {
+            cout << endl;
             char m = floor[p->getCoords().r()+1][p->getCoords().c()];
             if(m == ' ' || m == ')' || m == '&' || m == '>' || m == '?'){
                 floor[p->getCoords().r()][p->getCoords().c()] = ' ';
@@ -378,6 +419,7 @@ bool Temple::playerTurn(char t) { // Covers players variety of moves
     }
 
     if(t == 'c'){ // Increase stats the cheat mode
+        cout << "Cheats Enabled" << endl;
         p->incDex(50);
         p->incStr(50);
         p->incArm(50);
@@ -390,23 +432,30 @@ bool Temple::playerTurn(char t) { // Covers players variety of moves
 void Temple::enemyTurn() { // What enemies do during their turn
     for(int i = 0;i < enemies.size(); i++){
         if(enemies[i]->getHp() == 0){ // Describes what happens when enemies die like what they drop
-            floor[enemies[i]->getCoords().r()][enemies[i]->getCoords().c()] = ' ';
-            if(floor[enemies[i]->getCoords().r()][enemies[i]->getCoords().c()] == ' '){
+            Objects* o1 = getObjectLocation(Coord(enemies[i]->getCoords().r(), enemies[i]->getCoords().c()));
+            if(o1 == nullptr){
                 Objects* o = enemies[i]->drops();
                 if(o != nullptr){
                     o->place(Coord(enemies[i]->getCoords().r(), enemies[i]->getCoords().c()));
                     loot.push_back(o);
                     floor[enemies[i]->getCoords().r()][enemies[i]->getCoords().c()] = o->symbol();
+                } else {
+                    floor[enemies[i]->getCoords().r()][enemies[i]->getCoords().c()] = ' ';
                 }
+            } else {
+                floor[enemies[i]->getCoords().r()][enemies[i]->getCoords().c()] = o1->symbol();
             }
+            cout << enemies[i]->name() << " was Slain" << endl;
+            delete enemies[i];
             enemies.erase(enemies.begin()+i);
+            i--;
         } else { // Describes how enemies will move or if they attack the player
             if(enemies[i]->getSleep()>0){
                 enemies[i]->decSleep();
                 continue;
             }
             Coord c = enemies[i]->turn(floor, p);
-            if(floor[c.r()][c.c()] == ' ' || floor[c.r()][c.c()] == '(' || floor[c.r()][c.c()] == '&' || floor[c.r()][c.c()] == '>' || floor[c.r()][c.c()] == '?'){
+            if(floor[c.r()][c.c()] == ' ' || floor[c.r()][c.c()] == ')' || floor[c.r()][c.c()] == '&' || floor[c.r()][c.c()] == '>' || floor[c.r()][c.c()] == '?'){
                 floor[enemies[i]->getCoords().r()][enemies[i]->getCoords().c()] = ' ';
                 enemies[i]->move(Coord(c));
                 floor[enemies[i]->getCoords().r()][enemies[i]->getCoords().c()] = enemies[i]->symbol();

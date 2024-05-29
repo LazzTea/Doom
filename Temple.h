@@ -32,7 +32,8 @@
 
 class Temple {
 public:
-    Temple();
+    Temple(int smell);
+    ~Temple();
 
     // Member Functions
     Actors* randomEnemy(); // Functions to get random values
@@ -48,6 +49,7 @@ public:
 
     Objects* pickUpObject(Coord c); // Gets objects based on their coord
     Actors* getEnemyLocation(Coord c) const;
+    Objects* getObjectLocation(Coord c) const;
     void attack(Actors* attacker, Actors* defender); // Determines the out come of fights
 
     inline Player* getPlayer() { return p; }
@@ -73,6 +75,8 @@ private:
     std::vector<Objects*> loot;
 
     Player* p;
+
+    int smell;
 };
 
 

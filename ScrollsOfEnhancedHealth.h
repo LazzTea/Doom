@@ -10,6 +10,7 @@
 class ScrollsOfEnhancedHealth : public Scrolls{ // Increases users max health
 public:
     ScrollsOfEnhancedHealth();
+    inline ~ScrollsOfEnhancedHealth() {}
 
     // Member Functions
     void read(Player* p, Coord c); // Override

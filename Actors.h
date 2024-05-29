@@ -20,7 +20,7 @@ class Player;
 class Actors { // Base class for all monsters and player
 public:
     Actors(Coord c, int hpSt, int armSt, int strSt, int dexSt, int maxHpSt, Weapons* wpSt);
-    virtual inline ~Actors(){ delete wp; }
+    virtual ~Actors();
 
     // Functions for Child Classes
     virtual inline char symbol() const = 0; // The symbol each enemy and play displays on map
